@@ -1,2 +1,13 @@
 ﻿  Game.cpp
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(58,54): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(58,54): warning C4244:         with
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(58,54): warning C4244:         [
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(58,54): warning C4244:             T=float
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(58,54): warning C4244:         ]
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(64,55): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(64,55): warning C4244:         with
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(64,55): warning C4244:         [
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(64,55): warning C4244:             T=float
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(64,55): warning C4244:         ]
+D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Src\Game.cpp(66,38): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Avatar.vcxproj -> D:\Universidad - Cris\Videojuegos\Universidad del Litoral\MAV2\Unidad 3\MAVII_Unidad_3_Ejercicio_1\PelotaRebota\Bin\Debug\PelotaRebota.exe

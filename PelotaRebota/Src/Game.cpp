@@ -36,17 +36,35 @@ void Game::UpdatePhysics()
 {
     phyWorld->Step(frameTime, 8, 8); // Avanza la simulación física
     phyWorld->ClearForces(); // Limpia las fuerzas aplicadas a los cuerpos
-    phyWorld->DebugDraw(); // Dibuja el mundo físico (para depuración)
+    phyWorld->DebugDraw();
 }
 
 // Dibuja los elementos del juego en la ventana
 void Game::DrawGame()
 {
-    // Dibujamos el suelo
+    // Suelo
     sf::RectangleShape groundShape(sf::Vector2f(500, 5));
     groundShape.setFillColor(sf::Color::Red);
     groundShape.setPosition(0, 95);
     wnd->draw(groundShape);
+
+    // Techo
+    sf::RectangleShape roofShape(sf::Vector2f(500, 5));
+    roofShape.setFillColor(sf::Color::Blue);
+    roofShape.setPosition(0, 0);
+    wnd->draw(roofShape);
+
+    // Pared izquierda
+    sf::RectangleShape leftWallShape(sf::Vector2f(5, alto));
+    leftWallShape.setFillColor(sf::Color::Green);
+    leftWallShape.setPosition(0, 0);
+    wnd->draw(leftWallShape);
+
+    // Pared derecha
+    sf::RectangleShape rightWallShape(sf::Vector2f(5, alto));
+    rightWallShape.setFillColor(sf::Color::Yellow);
+    rightWallShape.setPosition(ancho - 5, 0);
+    wnd->draw(rightWallShape);
 
     controlBodyAvatar->Dibujar(*wnd); // Dibuja el avatar en la ventana
 }
@@ -81,46 +99,57 @@ void Game::DoEvents()
 void Game::SetZoom()
 {
     View camara;
-    camara.setSize(100.0f, 100.0f); // Tamaño del área visible
-    camara.setCenter(50.0f, 50.0f); // Centra la vista en estas coordenadas
-    wnd->setView(camara); // Asigna la vista a la ventana
+    camara.setSize(100.0f, 100.0f);
+    camara.setCenter(50.0f, 50.0f);
+    wnd->setView(camara);
 }
 
-// Inicializa el mundo físico y los elementos estáticos del juego
+// Inicializa las físicas
 void Game::InitPhysics()
 {
-    phyWorld = new b2World(b2Vec2(0.0f, 9.8f));
+    phyWorld = new b2World(b2Vec2(0.0f, 9.8f)); // Gravedad del mundo físico
 
     debugRender = new SFMLRenderer(wnd);
     debugRender->SetFlags(UINT_MAX); // Configura el renderizado para que muestre todo
     phyWorld->SetDebugDraw(debugRender);
 
+    // Crea el suelo
     b2Body* groundBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 100, 10);
     groundBody->SetTransform(b2Vec2(50.0f, 100.0f), 0.0f);
 
+    // Crea el techo
+    b2Body* roofBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 100, 10);
+    roofBody->SetTransform(b2Vec2(50.0f, 0.0f), 0.0f);
+
+    // Crea la pared izquierda
     b2Body* leftWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     leftWallBody->SetTransform(b2Vec2(0.0f, 50.0f), 0.0f);
 
+    // Crea la pared derecha
     b2Body* rightWallBody = Box2DHelper::CreateRectangularStaticBody(phyWorld, 10, 100);
     rightWallBody->SetTransform(b2Vec2(100.0f, 50.0f), 0.0f);
 
+    // Crea el cuerpo dinámico de la pelota
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(50.0f, 50.0f);
+    bodyDef.position.Set(50.0f, 50.0f); // Posición inicial
     controlBody = phyWorld->CreateBody(&bodyDef);
 
+    // Crea la forma de la pelota
     b2CircleShape circleShape;
-    circleShape.m_radius = 5.0f;
+    circleShape.m_radius = 5.0f; // Radio de la pelota
 
+    // Propiedades de la pelota
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &circleShape;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.5f;
-    fixtureDef.restitution = 0.9f; // Ajusta esto para controlar el rebote
+    fixtureDef.density = 1.0f; // Densidad de la pelota
+    fixtureDef.friction = 0.5f; // Fricción de la pelota
+    fixtureDef.restitution = 0.9f; // Coeficiente de restitución
 
-    controlBody->CreateFixture(&fixtureDef);
+    controlBody->CreateFixture(&fixtureDef); // Crea el fixture con las propiedades definidas
 
-    texturaPelota.loadFromFile("Pelota.png");
+    texturaPelota.loadFromFile("Pelota.png"); // Carga de la textura de la pelota
 
+    // Crea el avatar de la pelota con la textura
     controlBodyAvatar = new Avatar(controlBody, new sf::Sprite(texturaPelota));
 }
